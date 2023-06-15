@@ -1,5 +1,6 @@
 {
   "name": "short_url",
+  "homepage": "http://szparowanie.nazwa.pl/strony/short_url",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
