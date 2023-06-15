@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import './tailwind.css';
 
 function App() {
 
@@ -41,27 +41,60 @@ const [originalURL, setOriginalURL] = useState('');
     }
   };
 
+  const mystyle = {
+    color: "white",
+    backgroundImage: `url('https://images.pexels.com/photos/1982483/pexels-photo-1982483.jpeg')`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: '100vw',
+    height: '100vh',
+    padding: '10vw'
+  };
+
   return (
-    <div>
+    <section
+    style={mystyle}
+    className='text-black'>
+      
+    <div  className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <h1 className='text-4xl p-3 font-bold text-black'>Shorten your URL</h1>
       <form onSubmit={handleSubmit}>
         <input
+        className="w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
           type="text"
           value={originalURL}
           onChange={(e) => setOriginalURL(e.target.value)}
           placeholder="Enter URL"
           required
         />
-        <button type="submit" disabled={isLoading}>
+        <button 
+          className={
+            !isLoading ? 
+            "mt-4 px-4 py-2 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            :
+            "mt-4 px-4 py-2 bg-gray-500 text-white font-semibold rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          }
+          type="submit" 
+        disabled={isLoading}>
           {isLoading ? 'Shortening...' : 'Shorten'}
         </button>
       </form>
-      {error && <p>{error}</p>}
+      {error && 
+      <p
+      className="mt-4 text-red-500 text-black"
+      >{error}</p>}
       {shortenedURL && (
-        <p>
-          Shortened URL: <a href={shortenedURL} target='_blank' rel="noreferrer">{shortenedURL}</a>
+        <p className="mt-4 text-black">
+          Shortened URL: <a 
+          className="text-blue-500" 
+          href={shortenedURL} 
+          target='_blank' 
+          rel="noreferrer">{shortenedURL}</a>
         </p>
       )}
     </div>
+    </section>
   );
 };
 
